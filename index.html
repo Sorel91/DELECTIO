@@ -3,201 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DELECTIO | Cours en ligne pour enseignants et eleves</title>
+  <title>DELECTIO Math | Cours de mathematiques</title>
   <meta
     name="description"
-    content="DELECTIO aide les enseignants a organiser, animer et suivre des cours en ligne avec leurs eleves sur une plateforme simple."
+    content="Cours de mathematiques pour tous niveaux en petits groupes de 3 a 4 eleves, en alternance presentiel et visio."
   >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="page-shell">
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="Accueil DELECTIO">
-        <span class="brand-mark">D</span>
-        <span class="brand-text">DELECTIO</span>
-      </a>
-
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        Menu
-      </button>
-
-      <nav id="site-nav" class="site-nav" aria-label="Navigation principale">
-        <a href="#services">Services</a>
-        <a href="#experience">Experience</a>
-        <a href="#process">Fonctionnement</a>
+  <div class="container">
+    <header class="header">
+      <a class="logo" href="#top" aria-label="Accueil DELECTIO Math">DELECTIO Math</a>
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#niveaux">Niveaux</a>
+        <a href="#format">Format</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
 
     <main id="top">
-      <section class="hero section reveal">
-        <div class="hero-copy">
-          <p class="eyebrow">Cours en ligne, sans friction</p>
-          <h1>Une plateforme simple pour enseigner en direct et faire progresser chaque eleve.</h1>
-          <p class="hero-text">
-            DELECTIO centralise la visio, les ressources, les devoirs et le suivi pedagogique dans une interface claire,
-            pensee pour les enseignants independants, les etablissements et les petites academies.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#contact">Demander une demo</a>
-            <a class="button button-secondary" href="#services">Voir les fonctionnalites</a>
-          </div>
-          <ul class="hero-metrics" aria-label="Indicateurs cles">
-            <li>
-              <strong>24/7</strong>
-              <span>acces aux ressources</span>
-            </li>
-            <li>
-              <strong>1 clic</strong>
-              <span>pour lancer une classe</span>
-            </li>
-            <li>
-              <strong>100%</strong>
-              <span>suivi enseignant-eleve</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="hero-panel">
-          <div class="panel-card live-class">
-            <div class="panel-heading">
-              <span class="status-dot"></span>
-              Classe en direct
-            </div>
-            <h2>Mathematiques - 4e</h2>
-            <p>Tableau partage, chat, levage de main et exercices guides en temps reel.</p>
-            <div class="participant-stack" aria-label="Participants connectes">
-              <span>Prof. Nadia</span>
-              <span>12 eleves</span>
-              <span>3 groupes</span>
-            </div>
-          </div>
-
-          <div class="panel-card schedule-card">
-            <p class="mini-label">A venir aujourd'hui</p>
-            <ul>
-              <li>
-                <span>09:00</span>
-                <strong>Physique - Terminale</strong>
-              </li>
-              <li>
-                <span>14:00</span>
-                <strong>Francais - 3e</strong>
-              </li>
-              <li>
-                <span>18:30</span>
-                <strong>Cours particulier - Anglais</strong>
-              </li>
-            </ul>
-          </div>
-        </div>
+      <section class="hero">
+        <p class="kicker">Cours de mathematiques</p>
+        <h1>Un accompagnement clair, en petit groupe, du college au superieur.</h1>
+        <p>
+          Site dedie uniquement aux mathematiques. Les cours se font en groupes de 3 a 4 eleves,
+          avec une alternance entre seances en face a face et cours en visio.
+        </p>
+        <a class="button" href="#contact">Demander un premier echange</a>
       </section>
 
-      <section id="services" class="section reveal">
-        <div class="section-heading">
-          <p class="eyebrow">Ce que la plateforme couvre</p>
-          <h2>Tout le necessaire pour preparer, animer et suivre un cours en ligne.</h2>
-        </div>
-
-        <div class="feature-grid">
-          <article class="feature-card accent-sand">
-            <h3>Visioclasse integree</h3>
-            <p>Lancez un cours avec partage d'ecran, tableau visuel, documents et discussion sans changer d'outil.</p>
+      <section id="niveaux" class="section">
+        <h2>Les 3 niveaux proposes</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>Niveau 1 - College</h3>
+            <p>Consolidation des bases: calcul, fractions, geometrie, raisonnement.</p>
           </article>
-          <article class="feature-card accent-teal">
-            <h3>Espace eleve</h3>
-            <p>Chaque eleve retrouve ses cours, devoirs, supports et replays dans un espace ordonne et facile a suivre.</p>
+          <article class="card">
+            <h3>Niveau 2 - Lycee</h3>
+            <p>Preparation continue et examens: fonctions, probabilites, analyse, methodologie.</p>
           </article>
-          <article class="feature-card accent-coral">
-            <h3>Suivi pedagogique</h3>
-            <p>Visualisez la progression, les absences, les rendus et les points de blocage a traiter rapidement.</p>
-          </article>
-          <article class="feature-card accent-ink">
-            <h3>Organisation simple</h3>
-            <p>Planifiez les seances, envoyez des rappels automatiques et gardez un historique par classe ou par groupe.</p>
+          <article class="card">
+            <h3>Niveau 3 - Superieur</h3>
+            <p>Approfondissement: algebre, analyse et resolution de problemes plus avances.</p>
           </article>
         </div>
       </section>
 
-      <section id="experience" class="section split-section reveal">
-        <div>
-          <p class="eyebrow">Experience enseignant</p>
-          <h2>Moins d'administration, plus de temps pour enseigner.</h2>
-          <p>
-            La page d'accueil enseignant affiche les cours du jour, les eleves a relancer, les devoirs en attente
-            et les statistiques utiles pour garder un cadre pedagogique clair.
-          </p>
-          <ul class="check-list">
-            <li>Creation rapide d'une salle de cours</li>
-            <li>Depot de supports avant ou apres la session</li>
-            <li>Commentaires personnalises par eleve</li>
-          </ul>
-        </div>
-
-        <div class="experience-board">
-          <div class="board-column">
-            <h3>Avant le cours</h3>
-            <p>Planification, invitation et partage du support.</p>
+      <section id="format" class="section">
+        <h2>Organisation des cours</h2>
+        <div class="split">
+          <div class="panel">
+            <h3>Petit groupe</h3>
+            <p>Chaque groupe est compose de 3 a 4 eleves pour garder un suivi individuel reel.</p>
           </div>
-          <div class="board-column highlighted">
-            <h3>Pendant le cours</h3>
-            <p>Interaction en direct, questions et activites guidees.</p>
-          </div>
-          <div class="board-column">
-            <h3>Apres le cours</h3>
-            <p>Replay, devoirs, feedback et suivi de progression.</p>
+          <div class="panel">
+            <h3>Alternance presentiel / visio</h3>
+            <p>Une semaine en face a face, une semaine en visio, selon l'organisation du groupe.</p>
           </div>
         </div>
       </section>
 
-      <section id="process" class="section reveal">
-        <div class="section-heading">
-          <p class="eyebrow">Fonctionnement</p>
-          <h2>Un parcours simple en trois etapes.</h2>
-        </div>
-
-        <div class="timeline">
-          <article>
-            <span>01</span>
-            <h3>Configurer votre espace</h3>
-            <p>Ajoutez vos matieres, niveaux, groupes et disponibilites en quelques minutes.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>Inviter enseignants et eleves</h3>
-            <p>Chaque utilisateur recoit un acces simple pour rejoindre les classes et retrouver ses contenus.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Lancer les cours et suivre les resultats</h3>
-            <p>Animez les sessions, gerez les devoirs et consultez les indicateurs de progression.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section testimonial-section reveal">
-        <div class="testimonial-card">
-          <p class="quote">
-            “Nous avions besoin d'un outil simple pour donner des cours en ligne sans multiplier les applications.
-            DELECTIO nous a permis de structurer les cours, les supports et le suivi des eleves en un seul endroit.”
-          </p>
-          <p class="quote-author">Meryem B. - Coordinatrice pedagogique</p>
-        </div>
-      </section>
-
-      <section id="contact" class="section contact-section reveal">
-        <div class="contact-copy">
-          <p class="eyebrow">Contact</p>
-          <h2>Parlez-nous de votre besoin.</h2>
-          <p>
-            Ce formulaire sert de point d'entree pour une prise de contact ou une demande de demonstration.
-            Dans une version complete, il pourra etre connecte a un vrai back-end ou a un service d'email.
-          </p>
-        </div>
+      <section id="contact" class="section">
+        <h2>Contact</h2>
+        <p class="contact-intro">
+          Laissez vos informations pour recevoir les horaires, les disponibilites et le niveau conseille.
+        </p>
 
         <form class="contact-form" id="contact-form">
           <label>
@@ -206,17 +80,22 @@
           </label>
           <label>
             Email
-            <input type="email" name="email" placeholder="vous@ecole.fr" required>
+            <input type="email" name="email" placeholder="vous@email.com" required>
           </label>
           <label>
-            Structure
-            <input type="text" name="organization" placeholder="Ecole, academie, cours particuliers">
+            Niveau souhaite
+            <select name="level" required>
+              <option value="">Choisir un niveau</option>
+              <option value="college">Niveau 1 - College</option>
+              <option value="lycee">Niveau 2 - Lycee</option>
+              <option value="superieur">Niveau 3 - Superieur</option>
+            </select>
           </label>
           <label>
-            Besoin
-            <textarea name="message" rows="5" placeholder="Decrivez vos cours, vos niveaux et vos attentes" required></textarea>
+            Message
+            <textarea name="message" rows="4" placeholder="Vos besoins en math" required></textarea>
           </label>
-          <button class="button button-primary" type="submit">Envoyer la demande</button>
+          <button class="button" type="submit">Envoyer</button>
           <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
         </form>
       </section>
