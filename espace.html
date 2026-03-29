@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espace DELECTIO | Etudiant & Enseignant</title>
+  <meta
+    name="description"
+    content="Espace etudiant et enseignant pour le suivi des cours de mathematiques, des chapitres et des difficultes."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="espace.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <a class="brand" href="index.html">DELECTIO Math</a>
+      <nav class="app-nav" aria-label="Navigation espace">
+        <button type="button" class="role-tab is-active" data-role="student">Espace Etudiant</button>
+        <button type="button" class="role-tab" data-role="teacher">Espace Enseignant</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro-card">
+        <h1>Suivi des cours et progression</h1>
+        <p>
+          Cette interface permet aux etudiants de renseigner les chapitres et difficultes,
+          et aux enseignants de suivre les remontees par cours et par eleve.
+        </p>
+      </section>
+
+      <section id="student-space" class="role-panel is-visible" aria-label="Espace etudiant">
+        <div class="panel-head">
+          <h2>Espace Etudiant</h2>
+          <label>
+            Selection de l'etudiant
+            <select id="student-select"></select>
+          </label>
+        </div>
+
+        <div class="grid-two">
+          <article class="card">
+            <h3>Mes cours abonnes</h3>
+            <ul id="student-courses" class="list"></ul>
+          </article>
+
+          <article class="card">
+            <h3>Renseigner un chapitre</h3>
+            <form id="chapter-form" class="stack">
+              <label>
+                Cours
+                <select id="chapter-course" required></select>
+              </label>
+              <label>
+                Chapitre etudie
+                <input id="chapter-title" type="text" placeholder="Ex: Equations du premier degre" required>
+              </label>
+              <label>
+                Difficultes rencontrees
+                <textarea id="chapter-difficulty" rows="4" placeholder="Ex: Probleme sur la mise en equation"></textarea>
+              </label>
+              <button type="submit" class="btn-primary">Ajouter</button>
+              <p id="student-feedback" class="feedback" role="status" aria-live="polite"></p>
+            </form>
+          </article>
+        </div>
+
+        <article class="card">
+          <h3>Historique de mes chapitres</h3>
+          <div id="student-history" class="history"></div>
+        </article>
+      </section>
+
+      <section id="teacher-space" class="role-panel" aria-label="Espace enseignant">
+        <div class="panel-head">
+          <h2>Espace Enseignant</h2>
+          <label>
+            Selection de l'enseignant
+            <select id="teacher-select"></select>
+          </label>
+        </div>
+
+        <article class="card">
+          <h3>Mes cours et les eleves inscrits</h3>
+          <div id="teacher-courses" class="history"></div>
+        </article>
+
+        <article class="card">
+          <h3>Chapitres et difficultes remontees</h3>
+          <div id="teacher-insights" class="history"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="espace.js"></script>
+</body>
+</html>

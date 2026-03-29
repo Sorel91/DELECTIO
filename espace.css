@@ -1,0 +1,250 @@
+:root {
+  --bg: #f4f7ff;
+  --surface: #ffffff;
+  --text: #19213a;
+  --muted: #5f6785;
+  --line: #dbe2ff;
+  --primary: #3a66ff;
+  --primary-strong: #2f4fd1;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Manrope", sans-serif;
+  color: var(--text);
+  background: linear-gradient(180deg, #f7f9ff 0%, #f3f6ff 100%);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.app-shell {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1rem 0 2.5rem;
+}
+
+.app-header {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.brand {
+  text-decoration: none;
+  color: #1b2b70;
+  font-weight: 800;
+}
+
+.app-nav {
+  display: inline-flex;
+  gap: 0.5rem;
+  background: #ebf0ff;
+  padding: 0.4rem;
+  border-radius: 999px;
+}
+
+.role-tab {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 0.5rem 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.role-tab.is-active {
+  background: #ffffff;
+  color: var(--text);
+}
+
+.intro-card,
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+}
+
+.intro-card h1 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+}
+
+.intro-card p {
+  margin: 0.65rem 0 0;
+  color: var(--muted);
+}
+
+.role-panel {
+  display: none;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.role-panel.is-visible {
+  display: grid;
+}
+
+.panel-head {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.panel-head h2 {
+  margin: 0;
+}
+
+.panel-head label {
+  display: grid;
+  gap: 0.4rem;
+  font-weight: 700;
+}
+
+.grid-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.card h3 {
+  margin: 0 0 0.75rem;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.list li {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #f8faff;
+  padding: 0.62rem 0.7rem;
+}
+
+.stack {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.stack label {
+  display: grid;
+  gap: 0.4rem;
+  font-weight: 600;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  padding: 0.68rem 0.75rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid rgba(58, 102, 255, 0.2);
+  border-color: var(--primary);
+}
+
+.btn-primary {
+  border: none;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 800;
+  padding: 0.72rem 1rem;
+  cursor: pointer;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: var(--primary-strong);
+}
+
+.feedback {
+  margin: 0;
+  min-height: 1.2rem;
+  color: #2746be;
+}
+
+.history {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 0.7rem;
+  background: #f9fbff;
+}
+
+.item p {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+}
+
+.item-meta {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.empty {
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-md);
+  padding: 0.8rem;
+  color: var(--muted);
+  background: #fafcff;
+}
+
+@media (max-width: 860px) {
+  .grid-two {
+    grid-template-columns: 1fr;
+  }
+
+  .panel-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 620px) {
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .app-nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .role-tab {
+    width: 100%;
+  }
+}
