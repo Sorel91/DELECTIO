@@ -30,6 +30,12 @@
           Cette interface permet aux etudiants de renseigner les chapitres et difficultes,
           et aux enseignants de suivre les remontees par cours et par eleve.
         </p>
+        <p>
+          Integration Zoom active: chaque cours affiche un acces direct a sa salle de visio.
+        </p>
+        <p>
+          L'enseignant peut desormais saisir l'ID de reunion et le mot de passe Zoom pour generer automatiquement le lien.
+        </p>
       </section>
 
       <section id="student-space" class="role-panel is-visible" aria-label="Espace etudiant">
@@ -85,6 +91,7 @@
 
         <article class="card">
           <h3>Mes cours et les eleves inscrits</h3>
+          <p id="teacher-zoom-feedback" class="feedback" role="status" aria-live="polite"></p>
           <div id="teacher-courses" class="history"></div>
         </article>
 

@@ -17,18 +17,27 @@ const defaultData = {
       title: 'Maths College - Groupe A',
       teacherId: 't1',
       studentIds: ['s1', 's2', 's3'],
+      zoomMeetingId: '12345678901',
+      zoomPasscode: '',
+      zoomLink: 'https://zoom.us/j/12345678901',
     },
     {
       id: 'c2',
       title: 'Maths Lycee - Groupe B',
       teacherId: 't1',
       studentIds: ['s2', 's4'],
+      zoomMeetingId: '23456789012',
+      zoomPasscode: '',
+      zoomLink: 'https://zoom.us/j/23456789012',
     },
     {
       id: 'c3',
       title: 'Maths Universite - Groupe C',
       teacherId: 't2',
       studentIds: ['s1', 's4'],
+      zoomMeetingId: '34567890123',
+      zoomPasscode: '',
+      zoomLink: 'https://zoom.us/j/34567890123',
     },
   ],
   progress: [
@@ -51,11 +60,35 @@ function loadData() {
   }
 
   try {
-    return JSON.parse(raw);
+    const parsed = JSON.parse(raw);
+    const normalized = normalizeData(parsed);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized));
+    return normalized;
   } catch {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultData));
     return structuredClone(defaultData);
   }
+}
+
+function normalizeData(data) {
+  const merged = {
+    ...structuredClone(defaultData),
+    ...data,
+  };
+
+  merged.courses = (data.courses && Array.isArray(data.courses) ? data.courses : defaultData.courses).map(
+    (course) => {
+      const fallback = defaultData.courses.find((item) => item.id === course.id);
+      return {
+        ...course,
+        zoomMeetingId: course.zoomMeetingId || fallback?.zoomMeetingId || '',
+        zoomPasscode: course.zoomPasscode || fallback?.zoomPasscode || '',
+        zoomLink: course.zoomLink || fallback?.zoomLink || '',
+      };
+    }
+  );
+
+  return merged;
 }
 
 function saveData(data) {
@@ -83,6 +116,7 @@ const studentHistory = document.querySelector('#student-history');
 const studentFeedback = document.querySelector('#student-feedback');
 const teacherCourses = document.querySelector('#teacher-courses');
 const teacherInsights = document.querySelector('#teacher-insights');
+const teacherZoomFeedback = document.querySelector('#teacher-zoom-feedback');
 
 function getStudentById(id) {
   return state.data.students.find((student) => student.id === id);
@@ -102,6 +136,36 @@ function studentCourseList(studentId) {
 
 function teacherCourseList(teacherId) {
   return state.data.courses.filter((course) => course.teacherId === teacherId);
+}
+
+function sanitizeMeetingId(value) {
+  return value.replace(/\D+/g, '');
+}
+
+function escapeAttr(value) {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('"', '&quot;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;');
+}
+
+function buildZoomLink(course) {
+  if (course.zoomLink && course.zoomLink.trim().length > 0) {
+    return course.zoomLink.trim();
+  }
+
+  const meetingId = sanitizeMeetingId(course.zoomMeetingId || '');
+  if (!meetingId) {
+    return '';
+  }
+
+  const passcode = (course.zoomPasscode || '').trim();
+  if (!passcode) {
+    return `https://zoom.us/j/${meetingId}`;
+  }
+
+  return `https://zoom.us/j/${meetingId}?pwd=${encodeURIComponent(passcode)}`;
 }
 
 function switchRole(role) {
@@ -147,7 +211,22 @@ function renderStudentCourses() {
     return;
   }
 
-  studentCourses.innerHTML = courses.map((course) => `<li>${course.title}</li>`).join('');
+  studentCourses.innerHTML = courses
+    .map((course) => {
+      const resolvedZoomLink = buildZoomLink(course);
+      const zoomButton = resolvedZoomLink
+        ? `<a class="btn-zoom" href="${resolvedZoomLink}" target="_blank" rel="noopener noreferrer">Rejoindre Zoom</a>`
+        : '<span class="zoom-missing">Lien Zoom a definir</span>';
+
+      return `
+        <li class="course-item">
+          <span>${course.title}</span>
+          ${zoomButton}
+        </li>
+      `;
+    })
+    .join('');
+
   chapterCourse.innerHTML = courses
     .map((course) => `<option value="${course.id}">${course.title}</option>`)
     .join('');
@@ -206,11 +285,50 @@ function renderTeacherCourses() {
         .map((id) => getStudentById(id)?.name)
         .filter(Boolean)
         .join(', ');
+      const resolvedZoomLink = buildZoomLink(course);
+      const zoomMeetingId = course.zoomMeetingId || '';
+      const zoomPasscode = course.zoomPasscode || '';
 
       return `
         <article class="item">
           <strong>${course.title}</strong>
           <p><strong>Eleves inscrits:</strong> ${studentNames || 'Aucun eleve'}</p>
+          ${resolvedZoomLink
+            ? `<a class="btn-zoom" href="${resolvedZoomLink}" target="_blank" rel="noopener noreferrer">Ouvrir la salle Zoom</a>`
+            : '<p class="item-meta">Lien Zoom non configure.</p>'}
+          <form class="zoom-form" data-course-id="${course.id}">
+            <div class="zoom-grid">
+              <label>
+                ID de reunion Zoom
+                <input
+                  type="text"
+                  name="zoomMeetingId"
+                  inputmode="numeric"
+                  placeholder="Ex: 12345678901"
+                  value="${escapeAttr(zoomMeetingId)}"
+                >
+              </label>
+              <label>
+                Mot de passe Zoom
+                <input
+                  type="text"
+                  name="zoomPasscode"
+                  placeholder="Ex: Maths2026"
+                  value="${escapeAttr(zoomPasscode)}"
+                >
+              </label>
+            </div>
+            <label>
+              Lien Zoom personnalise (optionnel)
+              <input
+                type="url"
+                name="zoomLink"
+                placeholder="https://zoom.us/j/..."
+                value="${escapeAttr(course.zoomLink || '')}"
+              >
+            </label>
+            <button class="btn-secondary" type="submit">Enregistrer Zoom</button>
+          </form>
         </article>
       `;
     })
@@ -279,6 +397,9 @@ teacherSelect.addEventListener('change', (event) => {
   state.activeTeacherId = event.target.value;
   renderTeacherCourses();
   renderTeacherInsights();
+  if (teacherZoomFeedback) {
+    teacherZoomFeedback.textContent = '';
+  }
 });
 
 chapterForm.addEventListener('submit', (event) => {
@@ -307,6 +428,57 @@ chapterForm.addEventListener('submit', (event) => {
 
   renderStudentHistory();
   renderTeacherInsights();
+});
+
+teacherCourses.addEventListener('submit', (event) => {
+  const form = event.target;
+  if (!(form instanceof HTMLFormElement) || !form.classList.contains('zoom-form')) {
+    return;
+  }
+
+  event.preventDefault();
+
+  const courseId = form.dataset.courseId;
+  const zoomLinkInput = form.querySelector('input[name="zoomLink"]');
+  const zoomMeetingIdInput = form.querySelector('input[name="zoomMeetingId"]');
+  const zoomPasscodeInput = form.querySelector('input[name="zoomPasscode"]');
+
+  if (
+    !courseId ||
+    !(zoomLinkInput instanceof HTMLInputElement) ||
+    !(zoomMeetingIdInput instanceof HTMLInputElement) ||
+    !(zoomPasscodeInput instanceof HTMLInputElement)
+  ) {
+    return;
+  }
+
+  const zoomLink = zoomLinkInput.value.trim();
+  const zoomMeetingId = sanitizeMeetingId(zoomMeetingIdInput.value.trim());
+  const zoomPasscode = zoomPasscodeInput.value.trim();
+
+  if (!zoomLink && !zoomMeetingId) {
+    if (teacherZoomFeedback) {
+      teacherZoomFeedback.textContent = 'Ajoutez un lien Zoom personnalise ou un ID de reunion Zoom.';
+    }
+    return;
+  }
+
+  const course = state.data.courses.find((item) => item.id === courseId);
+  if (!course) {
+    return;
+  }
+
+  course.zoomLink = zoomLink;
+  course.zoomMeetingId = zoomMeetingId;
+  course.zoomPasscode = zoomPasscode;
+  saveData(state.data);
+
+  renderStudentCourses();
+  renderTeacherCourses();
+
+  if (teacherZoomFeedback) {
+    teacherZoomFeedback.textContent = `Configuration Zoom enregistree pour ${course.title}.`;
+  }
 });
 
 switchRole('student');

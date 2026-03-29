@@ -142,6 +142,37 @@ textarea {
   padding: 0.62rem 0.7rem;
 }
 
+.course-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.btn-zoom {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 10px;
+  border: 1px solid #bfd0ff;
+  background: #eef3ff;
+  color: #1f45c4;
+  font-weight: 700;
+  padding: 0.42rem 0.65rem;
+  white-space: nowrap;
+}
+
+.btn-zoom:hover,
+.btn-zoom:focus-visible {
+  background: #e2ebff;
+}
+
+.zoom-missing {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .stack {
   display: grid;
   gap: 0.7rem;
@@ -209,6 +240,43 @@ textarea:focus {
   color: var(--muted);
 }
 
+.item .btn-zoom {
+  margin-top: 0.6rem;
+}
+
+.zoom-form {
+  margin-top: 0.7rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.zoom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+}
+
+.zoom-form label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.btn-secondary {
+  border: 1px solid #bfd0ff;
+  border-radius: 10px;
+  background: #eef3ff;
+  color: #1f45c4;
+  font-weight: 700;
+  padding: 0.62rem 0.9rem;
+  cursor: pointer;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background: #e2ebff;
+}
+
 .item-meta {
   font-size: 0.9rem;
   color: var(--muted);
@@ -246,5 +314,14 @@ textarea:focus {
 
   .role-tab {
     width: 100%;
+  }
+
+  .course-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .zoom-grid {
+    grid-template-columns: 1fr;
   }
 }
