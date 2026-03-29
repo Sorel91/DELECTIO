@@ -168,6 +168,15 @@ function buildZoomLink(course) {
   return `https://zoom.us/j/${meetingId}?pwd=${encodeURIComponent(passcode)}`;
 }
 
+function buildInAppZoomLink(course) {
+  const resolvedZoomLink = buildZoomLink(course);
+  if (!resolvedZoomLink) {
+    return '';
+  }
+
+  return `visio.html?zoom=${encodeURIComponent(resolvedZoomLink)}&course=${encodeURIComponent(course.title)}`;
+}
+
 function switchRole(role) {
   state.role = role;
   roleTabs.forEach((tab) => {
@@ -213,9 +222,9 @@ function renderStudentCourses() {
 
   studentCourses.innerHTML = courses
     .map((course) => {
-      const resolvedZoomLink = buildZoomLink(course);
-      const zoomButton = resolvedZoomLink
-        ? `<a class="btn-zoom" href="${resolvedZoomLink}" target="_blank" rel="noopener noreferrer">Rejoindre Zoom</a>`
+      const inAppZoomLink = buildInAppZoomLink(course);
+      const zoomButton = inAppZoomLink
+        ? `<a class="btn-zoom" href="${inAppZoomLink}">Ouvrir la visio dans DELECTIO</a>`
         : '<span class="zoom-missing">Lien Zoom a definir</span>';
 
       return `
@@ -285,7 +294,7 @@ function renderTeacherCourses() {
         .map((id) => getStudentById(id)?.name)
         .filter(Boolean)
         .join(', ');
-      const resolvedZoomLink = buildZoomLink(course);
+      const inAppZoomLink = buildInAppZoomLink(course);
       const zoomMeetingId = course.zoomMeetingId || '';
       const zoomPasscode = course.zoomPasscode || '';
 
@@ -293,8 +302,8 @@ function renderTeacherCourses() {
         <article class="item">
           <strong>${course.title}</strong>
           <p><strong>Eleves inscrits:</strong> ${studentNames || 'Aucun eleve'}</p>
-          ${resolvedZoomLink
-            ? `<a class="btn-zoom" href="${resolvedZoomLink}" target="_blank" rel="noopener noreferrer">Ouvrir la salle Zoom</a>`
+          ${inAppZoomLink
+            ? `<a class="btn-zoom" href="${inAppZoomLink}">Ouvrir la visio dans DELECTIO</a>`
             : '<p class="item-meta">Lien Zoom non configure.</p>'}
           <form class="zoom-form" data-course-id="${course.id}">
             <div class="zoom-grid">
