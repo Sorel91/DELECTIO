@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DELECTIO Visio | Zoom</title>
-  <meta name="description" content="Salle visio integree DELECTIO pour les cours Zoom.">
+  <meta name="description" content="Salle visio intégrée DELECTIO pour les cours Zoom.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -158,13 +158,13 @@
     </header>
 
     <p class="notice">
-      Zoom est charge dans DELECTIO. Si la visio ne s'affiche pas, utilisez le bouton "Ouvrir Zoom externe".
+      Zoom est chargé dans DELECTIO. Si la visio ne s'affiche pas, utilisez le bouton "Ouvrir Zoom externe".
     </p>
 
     <section class="stage">
       <iframe id="zoom-frame" title="Zoom dans DELECTIO" allow="camera; microphone; fullscreen; display-capture"></iframe>
       <div class="overlay" id="fallback-overlay">
-        <span>Zoom bloque parfois l'affichage integre selon la configuration de la reunion.</span>
+        <span>Zoom bloque parfois l'affichage intégré selon la configuration de la réunion.</span>
         <a class="btn btn-primary" id="fallback-open" href="#" target="_blank" rel="noopener noreferrer">Continuer dans Zoom</a>
       </div>
     </section>
@@ -195,7 +195,7 @@
       openExternal.href = rawZoomUrl;
       fallbackOpen.href = rawZoomUrl;
 
-      // Affiche le fallback apres un court delai: certains comptes Zoom refusent l'embed iframe.
+      // Affiche le fallback apres un court délai: certains comptes Zoom refusent l'embed iframe.
       window.setTimeout(() => {
         fallbackOverlay.classList.add('show');
       }, 2500);

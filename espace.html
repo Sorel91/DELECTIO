@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Espace DELECTIO | Etudiant & Enseignant</title>
+  <title>Espace DELECTIO | Étudiant & Enseignant</title>
   <meta
     name="description"
-    content="Espace etudiant et enseignant pour le suivi des cours de mathematiques, des chapitres et des difficultes."
+    content="Espace étudiant et enseignant pour le suivi des cours de mathématiques, des chapitres et des difficultés."
   >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
     <header class="app-header">
       <a class="brand" href="index.html">DELECTIO Math</a>
       <nav class="app-nav" aria-label="Navigation espace">
-        <button type="button" class="role-tab is-active" data-role="student">Espace Etudiant</button>
+        <button type="button" class="role-tab is-active" data-role="student">Espace Étudiant</button>
         <button type="button" class="role-tab" data-role="teacher">Espace Enseignant</button>
       </nav>
     </header>
@@ -27,29 +27,29 @@
       <section class="intro-card">
         <h1>Suivi des cours et progression</h1>
         <p>
-          Cette interface permet aux etudiants de renseigner les chapitres et difficultes,
-          et aux enseignants de suivre les remontees par cours et par eleve.
+          Cette interface permet aux étudiants de renseigner les chapitres et difficultés,
+          et aux enseignants de suivre les remontées par cours et par eleve.
         </p>
         <p>
           Integration Zoom active: chaque cours affiche un acces direct a sa salle de visio.
         </p>
         <p>
-          L'enseignant peut desormais saisir l'ID de reunion et le mot de passe Zoom pour generer automatiquement le lien.
+          L'enseignant peut désormais saisir l'ID de réunion et le mot de passe Zoom pour generer automatiquement le lien.
         </p>
       </section>
 
-      <section id="student-space" class="role-panel is-visible" aria-label="Espace etudiant">
+      <section id="student-space" class="role-panel is-visible" aria-label="Espace étudiant">
         <div class="panel-head">
-          <h2>Espace Etudiant</h2>
+          <h2>Espace Étudiant</h2>
           <label>
-            Selection de l'etudiant
+            Sélection de l'étudiant
             <select id="student-select"></select>
           </label>
         </div>
 
         <div class="grid-two">
           <article class="card">
-            <h3>Mes cours abonnes</h3>
+            <h3>Mes cours abonnés</h3>
             <ul id="student-courses" class="list"></ul>
           </article>
 
@@ -61,11 +61,11 @@
                 <select id="chapter-course" required></select>
               </label>
               <label>
-                Chapitre etudie
+                Chapitre étudié
                 <input id="chapter-title" type="text" placeholder="Ex: Equations du premier degre" required>
               </label>
               <label>
-                Difficultes rencontrees
+                Difficultes rencontrées
                 <textarea id="chapter-difficulty" rows="4" placeholder="Ex: Probleme sur la mise en equation"></textarea>
               </label>
               <button type="submit" class="btn-primary">Ajouter</button>
@@ -84,19 +84,19 @@
         <div class="panel-head">
           <h2>Espace Enseignant</h2>
           <label>
-            Selection de l'enseignant
+            Sélection de l'enseignant
             <select id="teacher-select"></select>
           </label>
         </div>
 
         <article class="card">
-          <h3>Mes cours et les eleves inscrits</h3>
+          <h3>Mes cours et les élèves inscrits</h3>
           <p id="teacher-zoom-feedback" class="feedback" role="status" aria-live="polite"></p>
           <div id="teacher-courses" class="history"></div>
         </article>
 
         <article class="card">
-          <h3>Chapitres et difficultes remontees</h3>
+          <h3>Chapitres et difficultés remontées</h3>
           <div id="teacher-insights" class="history"></div>
         </article>
       </section>
